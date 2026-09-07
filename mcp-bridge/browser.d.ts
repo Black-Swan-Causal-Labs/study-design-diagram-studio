@@ -1,0 +1,1 @@
+export function mountCanvasBridge(tools: Array<{name: string; description: string; inputSchema: Record<string, unknown>; execute: (input: unknown) => unknown}>, options: {endpoint: string; title: string; signal?: AbortSignal}): () => void;

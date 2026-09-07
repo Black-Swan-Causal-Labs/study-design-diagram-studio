@@ -1,0 +1,52 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "sdds-webmcp-bridge",
+  "main": "src/worker.ts",
+  "compatibility_date": "2026-09-07",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "SESSIONS",
+        "class_name": "CanvasSession"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": [
+        "CanvasSession"
+      ]
+    }
+  ],
+  "vars": {
+    "SERVER_NAME": "sdds-webmcp-bridge",
+    "STUDIO_ORIGINS": "https://sdds.blackswancausallabs.com",
+    "TOOL_NAMES": "get_study_spec,update_design_element,add_design_element,remove_design_element,reorder_design_elements,update_study_details,import_study_spec,clear_study_spec,validate_study_spec,export_schematic"
+  },
+  "ratelimits": [
+    {
+      "name": "CREATE_LIMIT",
+      "namespace_id": "1003",
+      "simple": {
+        "limit": 10,
+        "period": 60
+      }
+    },
+    {
+      "name": "REQUEST_LIMIT",
+      "namespace_id": "1004",
+      "simple": {
+        "limit": 120,
+        "period": 60
+      }
+    }
+  ],
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 0.1
+  }
+}

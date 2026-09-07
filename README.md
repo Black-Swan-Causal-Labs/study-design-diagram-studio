@@ -30,7 +30,7 @@ npm run build
 npm run preview
 ```
 
-The app uses React, TypeScript, Vite, Tailwind CSS, Zod, jsPDF, and PptxGenJS. It is deployed as a static application; no application server, database, or runtime secrets are required.
+The app uses React, TypeScript, Vite, Tailwind CSS, Zod, jsPDF, and PptxGenJS. The studio is a static application. Its optional remote MCP bridge runs separately on Cloudflare Workers and Durable Objects; ordinary manual editing and native WebMCP do not require a paired relay session.
 
 ## Cloudflare deployment
 
@@ -89,3 +89,7 @@ Unknown dates are represented by `null`; unresolved text stays blank. Source not
 No license for the application source has been granted in this repository. Third-party assets retain their included licenses; see `public/DejaVu-font-license.txt` and `vendor/shadcn-tailwind-4.13.0.LICENSE.md`.
 
 Black Swan Causal Labs: https://blackswancausallabs.com · info@blackswancausallabs.com
+
+## Remote MCP clients
+
+An optional [remote MCP bridge](mcp-bridge/README.md) connects other MCP clients to the same live browser canvas. Open the app, select **Connect MCP**, and enable a temporary connection. Native WebMCP continues to work without pairing. Registry metadata is in [`server.json`](server.json).

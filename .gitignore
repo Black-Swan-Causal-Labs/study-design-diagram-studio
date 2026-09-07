@@ -6,3 +6,9 @@ dist/
 .dev.vars.*
 .DS_Store
 *.log
+
+# MCP bridge local state and credentials
+**/.wrangler/
+**/.dev.vars*
+**/worker-configuration.d.ts
+.mcpregistry_*
