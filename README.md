@@ -14,6 +14,28 @@ A browser workspace by Black Swan Causal Labs for creating, reviewing, and expor
 
 The workspace is session-only. Use **Save JSON** to preserve edits before leaving. The preloaded example was transcribed from a reference figure and has not been verified against its manuscript. Completeness checks establish information presence, not methodological validity or source accuracy. The app does not extract information from PDFs.
 
+## Connect an AI agent
+
+The app exposes ten predefined tools for reading, editing, validating, and exporting the **current study design**. Human and agent edits share the same canvas and Undo history. There are two ways to connect:
+
+| Connection | Requirements | Setup |
+| --- | --- | --- |
+| Native WebMCP | A WebMCP-capable browser and agent | Open the studio and let the agent discover the page's tools |
+| Remote MCP bridge | A Streamable HTTP MCP client that supports custom authorization headers | Enable a temporary connection in the studio and configure the client with its URL and key |
+
+For a remote MCP client:
+
+1. Open [Study Design Diagram Studio](https://sdds.blackswancausallabs.com), select **Connect MCP**, then **Enable connection**.
+2. Add `https://sdds-webmcp-bridge.jdiazdecaro.workers.dev/mcp` to your client. Set its `Authorization` header to the complete copied value, including `Bearer `, or use **Copy MCP config** if the client accepts that format.
+3. Keep the tab open. Ask the agent to read the current study specification before editing; mutations require its latest revision.
+4. Select **Disconnect** to revoke access. Closing or reloading the page also ends the session. Keys expire after two hours; reconnect for a new key.
+
+The remote bridge is published in the [official MCP Registry as `io.github.Black-Swan-Causal-Labs/sdds-webmcp`](https://registry.modelcontextprotocol.io/?q=io.github.Black-Swan-Causal-Labs%2Fsdds-webmcp). Its metadata is in [`server.json`](server.json); see the [bridge README](mcp-bridge/README.md) for detailed connection, session, development, and deployment instructions.
+
+A website URL alone does not enable arbitrary agents to use WebMCP. Native access needs browser and agent support; remote access needs pairing and custom-header support. The bridge currently does not implement OAuth discovery.
+
+Pairing is optional and sends study tool arguments and results through the Cloudflare relay to the connected agent provider. Anyone with the temporary key can invoke that canvas's tools while connected. Loading the page does not create a relay session, and native WebMCP works without this relay; the browser agent's own data handling still applies.
+
 ## Local development
 
 Requires Node.js 22.13 or later and npm. Node.js 24 was used for the initial deployment.
@@ -56,7 +78,7 @@ Wrangler opens authentication in your default browser. The Pages project and cus
 
 Deployment is currently manual through Wrangler. Pushing to this GitHub repository does not automatically deploy to Cloudflare. Never commit Cloudflare tokens, `.env` files, `.dev.vars` files, or local Wrangler state.
 
-## WebMCP
+## WebMCP tool reference
 
 The app detects `document.modelContext`, with a fallback to `navigator.modelContext`. Manual editing remains available in browsers without WebMCP support. Tools operate on the current page's in-memory study, and mutations require `expected_revision` to protect against stale edits.
 
@@ -89,7 +111,3 @@ Unknown dates are represented by `null`; unresolved text stays blank. Source not
 No license for the application source has been granted in this repository. Third-party assets retain their included licenses; see `public/DejaVu-font-license.txt` and `vendor/shadcn-tailwind-4.13.0.LICENSE.md`.
 
 Black Swan Causal Labs: https://blackswancausallabs.com · info@blackswancausallabs.com
-
-## Remote MCP clients
-
-An optional [remote MCP bridge](mcp-bridge/README.md) connects other MCP clients to the same live browser canvas. Open the app, select **Connect MCP**, and enable a temporary connection. Native WebMCP continues to work without pairing. Registry metadata is in [`server.json`](server.json).
