@@ -69,3 +69,7 @@ gh workflow run publish-mcp.yml --ref main
 Run an authenticated smoke test against the deployed studio before publishing. `server.json` records the organization namespace and connection requirements. The browser's default relay URL and Wrangler's studio-origin allowlist must agree with the deployment. Site and Worker deployments remain manual. Registry publication uses the manually dispatched `Publish MCP Registry listing` workflow, with GitHub OIDC and no stored registry secret. Commits do not publish automatically.
 
 The source is intentionally identical between the two bridge Workers except for configuration and application wiring. Keep protocol/security fixes synchronized across both repositories.
+
+## License
+
+The original bridge code is licensed under [Apache License 2.0](../LICENSE), as part of Study Design Diagram Studio. Copyright 2026 Black Swan Causal Labs, LLC. See [NOTICE](../NOTICE) and [third-party notices](../THIRD_PARTY_NOTICES.txt). Dependencies retain their own licenses.

@@ -1,0 +1,11 @@
+Study Design Diagram Studio
+Copyright 2026 Black Swan Causal Labs, LLC
+
+The original application code, including the browser canvas, native WebMCP
+integration, and remote MCP bridge, is licensed under the Apache License,
+Version 2.0. See LICENSE.
+
+Third-party code, dependencies, fonts, and other assets retain their own
+licenses and notices. This license does not change rights in user-provided
+study content or third-party reference material, or grant trademark rights.
+See THIRD_PARTY_NOTICES.txt and the licenses included with dependencies.

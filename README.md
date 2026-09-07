@@ -108,6 +108,8 @@ Unknown dates are represented by `null`; unresolved text stays blank. Source not
 
 ## Licensing and contact
 
-No license for the application source has been granted in this repository. Third-party assets retain their included licenses; see `public/DejaVu-font-license.txt` and `vendor/shadcn-tailwind-4.13.0.LICENSE.md`.
+The original canvas application, native WebMCP integration, and remote MCP bridge are licensed under the **[Apache License 2.0](LICENSE)**. Copyright 2026 Black Swan Causal Labs, LLC. See [NOTICE](NOTICE).
+
+Third-party components retain their own licenses; see [THIRD_PARTY_NOTICES.txt](THIRD_PARTY_NOTICES.txt), `public/DejaVu-font-license.txt`, and `vendor/shadcn-tailwind-4.13.0.LICENSE.md`. The software license does not change rights in user-provided study content or third-party reference material, or grant trademark rights. License and notice files are also distributed with the deployed app.
 
 Black Swan Causal Labs: https://blackswancausallabs.com · info@blackswancausallabs.com
